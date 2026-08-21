@@ -1,13 +1,15 @@
 package br.edu.hub.service;
 
-import br.edu.hub.dto.ActivityResponse;
-import br.edu.hub.dto.ActivityUpdateRequest;
-import br.edu.hub.entity.Activity;
-import br.edu.hub.repository.ActivityRepository;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import br.edu.hub.dto.ActivityResponse;
+import br.edu.hub.dto.ActivityUpdateRequest;
+import br.edu.hub.entity.Activity;
+import br.edu.hub.exception.ResourceNotFoundException;
+import br.edu.hub.repository.ActivityRepository;
 
 @Service
 public class ActivityService {
@@ -44,7 +46,7 @@ public class ActivityService {
     }
 
     public Activity requireActivity(Long id) {
-        return activityRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Activity not found"));
-    }
+    return activityRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException("Activity not found"));
+}
 }
