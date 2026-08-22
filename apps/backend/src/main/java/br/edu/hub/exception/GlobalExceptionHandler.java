@@ -22,9 +22,9 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse("Validation failed", LocalDateTime.now(), errors));
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    ResponseEntity<ErrorResponse> handleIllegalArgument(IllegalArgumentException exception) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(ErrorResponse.of(exception.getMessage()));
-    }
+    @ExceptionHandler(ResourceNotFoundException.class)
+    ResponseEntity<ErrorResponse> handleNotFound(ResourceNotFoundException exception) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            .body(ErrorResponse.of(exception.getMessage()));
+}
 }
