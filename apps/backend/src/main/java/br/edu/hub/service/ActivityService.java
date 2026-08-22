@@ -1,14 +1,15 @@
 package br.edu.hub.service;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import br.edu.hub.dto.ActivityResponse;
 import br.edu.hub.dto.ActivityUpdateRequest;
 import br.edu.hub.entity.Activity;
 import br.edu.hub.exception.ResourceNotFoundException;
 import br.edu.hub.repository.ActivityRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 @Service
 public class ActivityService {
