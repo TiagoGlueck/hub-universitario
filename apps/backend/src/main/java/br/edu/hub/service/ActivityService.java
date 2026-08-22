@@ -45,7 +45,7 @@ public class ActivityService {
         return ActivityResponse.from(activityRepository.save(activity));
     }
 
-    public Activity requireActivity(Long id) {
+public Activity requireActivity(Long id) {
     return activityRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Activity not found"));
 }

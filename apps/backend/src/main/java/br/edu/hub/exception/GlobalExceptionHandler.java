@@ -23,6 +23,7 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse("Validation failed", LocalDateTime.now(), errors));
     }
 
+
 @ExceptionHandler(BusinessRuleException.class)
 ResponseEntity<ErrorResponse> handleBusinessRule(BusinessRuleException exception) {
     return ResponseEntity.status(HttpStatus.CONFLICT)
@@ -34,4 +35,5 @@ ResponseEntity<ErrorResponse> handleNotFound(ResourceNotFoundException exception
             .body(ErrorResponse.of(exception.getMessage()));
 }
 }
+
 
