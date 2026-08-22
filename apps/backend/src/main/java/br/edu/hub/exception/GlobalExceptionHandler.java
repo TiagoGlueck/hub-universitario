@@ -34,3 +34,4 @@ ResponseEntity<ErrorResponse> handleNotFound(ResourceNotFoundException exception
             .body(ErrorResponse.of(exception.getMessage()));
 }
 }
+
