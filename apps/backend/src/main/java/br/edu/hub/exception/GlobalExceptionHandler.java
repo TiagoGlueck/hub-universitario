@@ -23,9 +23,15 @@ public class GlobalExceptionHandler {
                 .body(new ErrorResponse("Validation failed", LocalDateTime.now(), errors));
     }
 
-    @ExceptionHandler(ResourceNotFoundException.class)
-    ResponseEntity<ErrorResponse> handleNotFound(ResourceNotFoundException exception) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+@ExceptionHandler(BusinessRuleException.class)
+ResponseEntity<ErrorResponse> handleBusinessRule(BusinessRuleException exception) {
+    return ResponseEntity.status(HttpStatus.CONFLICT)
+            .body(ErrorResponse.of(exception.getMessage()));
+}
+@ExceptionHandler(ResourceNotFoundException.class)
+ResponseEntity<ErrorResponse> handleNotFound(ResourceNotFoundException exception) {
+    return ResponseEntity.status(HttpStatus.NOT_FOUND)
             .body(ErrorResponse.of(exception.getMessage()));
 }
 }
+
