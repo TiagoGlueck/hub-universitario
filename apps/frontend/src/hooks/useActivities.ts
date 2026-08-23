@@ -1,10 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import {
-  createRegistration,
-  getActivities,
-  getActivity,
-  getRegistrations,
-} from '../services/activityService'
+import { createRegistration, getActivities, getActivity, getRegistrations, } from '../services/activityService'
 import type { RegistrationInput } from '../types/activity'
 
 export function useActivities(search: string) {
