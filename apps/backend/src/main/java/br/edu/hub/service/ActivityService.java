@@ -21,7 +21,14 @@ public class ActivityService {
 
     @Transactional(readOnly = true)
     public List<ActivityResponse> list(String search) {
-        return activityRepository.findAllByOrderByDateDesc().stream()
+        String term = search == null ? "" : search.trim();
+
+        List<Activity> activities = term.isEmpty()
+                ? activityRepository.findAllByOrderByDateDesc()
+                : activityRepository
+                    .findByTitleContainingIgnoreCaseOrDescriptionContainingIgnoreCaseOrderByDateDesc(term, term);
+
+        return activities.stream()
                 .map(ActivityResponse::from)
                 .toList();
     }
@@ -44,9 +51,8 @@ public class ActivityService {
         if (request.date() != null) activity.setDate(request.date());
         return ActivityResponse.from(activityRepository.save(activity));
     }
-
-public Activity requireActivity(Long id) {
-    return activityRepository.findById(id)
+    public Activity requireActivity(Long id) {
+        return activityRepository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("Activity not found"));
 }
 }
