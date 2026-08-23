@@ -86,4 +86,35 @@ class ActivityControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.studentEmail").value("maria@email.com"));
     }
+
+    //Novos testes
+    @Test
+void shouldFilterActivitiesByTitleIgnoringCase() throws Exception {
+    mockMvc.perform(get("/api/activities").param("search", "wOrKsHoP"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].title").value("Workshop de APIs"));
+}
+
+@Test
+void shouldFilterActivitiesByDescription() throws Exception {
+    mockMvc.perform(get("/api/activities").param("search", "LOTADA"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(1)))
+            .andExpect(jsonPath("$[0].title").value("Curso lotado"));
+}
+
+@Test
+void shouldReturnAllActivitiesWhenSearchIsBlank() throws Exception {
+    mockMvc.perform(get("/api/activities").param("search", "   "))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(2)));
+}
+
+@Test
+void shouldReturnEmptyListWhenNothingMatches() throws Exception {
+    mockMvc.perform(get("/api/activities").param("search", "termo-que-nao-existe"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$", hasSize(0)));
+}
 }
