@@ -1,10 +1,5 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
-import {
-  createRegistration,
-  getActivities,
-  getActivity,
-  getRegistrations,
-} from '../services/activityService'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { createRegistration, getActivities, getActivity, getRegistrations, } from '../services/activityService'
 import type { RegistrationInput } from '../types/activity'
 
 export function useActivities(search: string) {
@@ -31,7 +26,12 @@ export function useRegistrations(activityId: number) {
 }
 
 export function useCreateRegistration(activityId: number) {
+  const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: (input: RegistrationInput) => createRegistration(activityId, input),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['activities'] })
+    },
   })
 }
