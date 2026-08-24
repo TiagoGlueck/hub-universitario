@@ -53,7 +53,7 @@ export function DashboardPage() {
         <StatCard label="Atividades cadastradas" value={String(stats.totalActivities)} />
         <StatCard label="Inscrições totais" value={String(stats.totalRegistered)} />
         <StatCard label="Vagas disponíveis" value={String(stats.totalRemainingSpots)} />
-        <StatCard label="Ocupação média" value={`${Math.round(stats.averageOccupancy)}%`} />
+        <StatCard label="Ocupação média" value={`${Math.round(stats.PercentOccupancy)}%`} />
       </div>
       <div className="dashboard-grid">
         <section className="chart-card">
