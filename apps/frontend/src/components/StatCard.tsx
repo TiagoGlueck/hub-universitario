@@ -19,9 +19,9 @@ export function StatCard({ label, value, hint }: StatCardProps) {
     </div>
   )
 }
-interface StatusDonutChartProps { data: { status: string; label: string; count: number }[] }
+interface StatsPizzaProps { data: { status: string; label: string; count: number }[] }
 
-export function StatusDonutChart({ data }: StatusDonutChartProps) {
+export function StatsPizza({ data }: StatsPizzaProps) {
   const total = data.reduce((sum, item) => sum + item.count, 0)
   let cumulative = 0
   const stops = data.map((item) => {
