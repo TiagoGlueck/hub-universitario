@@ -35,6 +35,11 @@ const categoryCounts = (Object.keys(categoryLabels) as ActivityCategory[]).map((
 
   const statusCounts = (Object.keys(statusLabels) as ActivityStatus[]).map((status) => ({ status, label: statusLabels[status], count: activities.filter((activity) => activity.status === status).length, }))
 
+  const mostSoughtAfter = [...activities]
+  .filter((activity) => activity.capacity > 0)
+  .sort((a, b) => b.registeredCount / b.capacity - a.registeredCount / a.capacity)
+  .slice(0, 5)
+
 
   return {
     totalActivities,
@@ -44,5 +49,6 @@ const categoryCounts = (Object.keys(categoryLabels) as ActivityCategory[]).map((
     PercentOccupancy,
     categoryCounts,
     statusCounts,
+    mostSoughtAfter,
   }
 }
