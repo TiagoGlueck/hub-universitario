@@ -19,11 +19,14 @@ export function StatCard({ label, value, hint }: StatCardProps) {
     </div>
   )
 }
-interface StatsPizzaProps { data: { status: string; label: string; count: number }[] }
+interface StatusDonutChartProps {
+  data: { status: string; label: string; count: number }[]
+}
 
-export function StatsPizza({ data }: StatsPizzaProps) {
+export function StatusDonutChart({ data }: StatusDonutChartProps) {
   const total = data.reduce((sum, item) => sum + item.count, 0)
   let cumulative = 0
+
   const stops = data.map((item) => {
     const color = statusColorVar[item.status] ?? 'var(--muted)'
     const start = total > 0 ? (cumulative / total) * 360 : 0
