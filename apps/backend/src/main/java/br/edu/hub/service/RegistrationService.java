@@ -38,6 +38,9 @@ public RegistrationResponse register(Long activityId, RegistrationRequest reques
     if (activity.getRegisteredCount() >= activity.getCapacity()) {
         throw new BusinessRuleException("Activity is full");
     }
+    if (registrationRepository.existsByActivityIdAndStudentEmailIgnoreCase(activityId, request.studentEmail())) {
+        throw new BusinessRuleException("Student is already registered for this activity");
+    }
 
     Registration registration = registrationRepository.save(
             new Registration(activity, request.studentName(), request.studentEmail())

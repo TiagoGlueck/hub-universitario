@@ -87,6 +87,24 @@ class ActivityControllerTest {
                 .andExpect(jsonPath("$.studentEmail").value("maria@email.com"));
     }
 
+    @Test
+    void shouldPreventDuplicateRegistrationForSameActivity() throws Exception {
+        mockMvc.perform(post("/api/activities/{id}/registrations", openActivity.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"studentName":"Maria Souza","studentEmail":"maria@email.com"}
+                                """))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(post("/api/activities/{id}/registrations", openActivity.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"studentName":"Maria Souza","studentEmail":"MARIA@email.com"}
+                                """))
+                .andExpect(status().isConflict())
+                .andExpect(jsonPath("$.message").value("Student is already registered for this activity"));
+    }
+
     //Novos testes
     @Test
 void shouldFilterActivitiesByTitleIgnoringCase() throws Exception {
