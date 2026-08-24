@@ -27,3 +27,18 @@ Usei no Bug03 para entender melhor os resultados dos testes (especialmente os c�
 	
 ### como o participante revisou e validou o resultado:
  Não implementei sem antes entender, pela leitura dos nomes das funções e de sua estrutura, como o código funcionava em cada etapa em que foi necessário revisar, corrigir e testar. Como os nomes das funções são extremamente conectados a suas funções e objetivos, e como a estrutura do código remete estruturas previamente vistas por mim, foi possível entender o objetivo e funcionamento do código e de cada parte sua simplesmente pela leitura, análise e interpretação.
+
+---
+
+## FEATURE 02 (Fernando) 
+
+### ferramentas e modelos utilizados:
+Claude Sonnet no navegador
+### em quais etapas a IA foi utilizada: 
+  Foi usada para gerar funções de typescript e react a partir de pseudocódigos que estruturei. No mais, foi usada também para desenvolver um template simples de css e html que usei como base para a formulação da página da feature (dashboard)
+### resumo dos principais prompts ou objetivos solicitados:
+Usei no Bug03 para entender melhor os resultados dos testes (especialmente os códigos de erro) e no Bug04 para traduzir pseudocódigo para código typescript e identificar erros na função em typescript `apps/frontend/src/hooks/useActivities.ts`.
+### arquivos ou partes da solução influenciados:
+`CategoryGraph.tsx`, `StatCard.tsx`, `TopList.tsx`, `DashboardPage.tsx`, `styles.css`, `dashStats.ts`	
+### como o participante revisou e validou o resultado:
+A grande maioria das partes geradas pelo modelo de IA foram usados simplesmente como base e inspiração para o código que foi verdadeiramente implementado. Portanto, nenhum código ou template gerado foi implementado diretamente e nenhum código que o contribuidor (eu, Fernando) não tivesse antes revisado e entendido a syntax e função do mesmo. Além do mais, grande quantidade de tempo foi gasta em testes, tanto pelos testes providenciados pelo README.md e pelo teste direto na UI do website.
