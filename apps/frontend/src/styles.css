@@ -13,6 +13,9 @@
   --line: #eaeaea;
   --muted: #666;
   --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --status-open: #0a8f67;
+  --status-full: #c47a0a;
+  --status-closed: #8a94a6;
 }
 
 * { box-sizing: border-box; }
@@ -137,4 +140,202 @@ nav a.active { color: #111; font-weight: 600; }
   .detail-meta { grid-template-columns: 1fr; }
   .registration-panel { padding: 24px; }
   .registration-panel form { grid-template-columns: 1fr; }
+}
+
+
+
+/* ---DASHBOARD--- */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 32px;
+}
+.chart-card h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 32px;
+}
+
+.chart-card.full-width {
+  grid-column: 1 / -1;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.stat-card span {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stat-card strong {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+}
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 32px;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.85rem;
+}
+.bar-label {
+  color: var(--muted);
+  font-weight: 500;
+}
+.bar-track {
+  height: 6px;
+  background: #f0f0f0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.bar-fill {
+  display: block;
+  height: 100%;
+  background: #111;
+  border-radius: 3px;
+}
+.bar-value {
+  font-weight: 700;
+  text-align: right;
+  color: var(--navy);
+}
+.donut-chart {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.donut-visual {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.donut-hole {
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2; /* Garante que o centro fique sobreposto ao gradiente */
+}
+.donut-hole strong {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--navy);
+}
+.donut-hole span {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.donut-legend {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+.donut-legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.donut-legend .legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.donut-legend strong {
+  margin-left: auto;
+  color: var(--navy);
+  font-weight: 700;
+}
+.occupancy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.occupancy-list li a {
+  text-decoration: none;
+  display: block;
+}
+.occupancy-row-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 8px;
+}
+.occupancy-title {
+  font-weight: 600;
+  color: var(--navy);
+  font-size: 0.95rem;
+}
+.occupancy-percent {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--navy);
+}
+.occupancy-meta {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+  display: block;
+  margin-top: 8px;
+}
+@media (max-width: 900px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr); }
+  .dashboard-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .stat-grid { grid-template-columns: 1fr; }
+  .donut-chart { flex-direction: column; align-items: flex-start; }
 }

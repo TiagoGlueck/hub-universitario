@@ -24,7 +24,7 @@ export interface dashStats {
   mostSoughtAfter: Activity[]
 }
 
-export function computeDashStats(activities: Activity[]): dashStats {
+export function computeDashboardStats(activities: Activity[]): dashStats {
   const totalActivities = activities.length
   const totalCapacity = activities.reduce((sum, activity) => sum + activity.capacity, 0)
   const totalRegistered = activities.reduce((sum, activity) => sum + activity.registeredCount, 0)
@@ -34,6 +34,7 @@ export function computeDashStats(activities: Activity[]): dashStats {
 const categoryCounts = (Object.keys(categoryLabels) as ActivityCategory[]).map((category) => ({ category, label: categoryLabels[category], count: activities.filter((activity) => activity.category === category).length, }))
 
   const statusCounts = (Object.keys(statusLabels) as ActivityStatus[]).map((status) => ({ status, label: statusLabels[status], count: activities.filter((activity) => activity.status === status).length, }))
+
 
   return {
     totalActivities,
