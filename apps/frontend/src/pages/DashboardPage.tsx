@@ -65,6 +65,10 @@ export function DashboardPage() {
           <StatusDonutChart data={stats.statusCounts} />
         </section>
       </div>
+	<section className="chart-card occupancy-card">
+	    <h2>Mais concorridas</h2>
+	    <TopList activities={stats.mostSoughtAfter} />
+	</section>
     </main>
   )
 }
